@@ -16,6 +16,8 @@ public class Main implements ApplicationListener {
 	private Sprite sprite;
 	private Sprite spriteBullet;
 	private Texture texture2;
+	private BulletHandler bullet;
+
 	@Override
 	public void create() {
 		float w = Gdx.graphics.getWidth();
@@ -28,6 +30,9 @@ public class Main implements ApplicationListener {
 		texture2 = new Texture(Gdx.files.internal("badlogic.jpg"));
 
 
+
+
+		bullet = new BulletHandler(new Texture("badlogic.jpg"));
 
 	}
 
@@ -87,8 +92,13 @@ public class Main implements ApplicationListener {
 		}
 
 
+		if(Gdx.input.isButtonPressed(Input.Keys.D)) {
+			bullet.add(100, 100);
+		}
 		batch.begin();
+		bullet.render(batch);
 		sprite.draw(batch);
+
 		batch.end();
 	}
 
